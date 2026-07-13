@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>KULTU N.º 0001 — La Dama de Prata | KULTU by Shazequin</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Outfit:wght@300;400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<header class="site-header">
+  <a class="brand" href="index.html">KULTU<small>BY SHAZEQUIN</small></a>
+  <nav class="site-nav">
+    <a href="index.html#colecao">A Edição</a>
+    <a href="lenda.html">A Lenda</a>
+    <a href="artista.html">A Artista</a>
+    <a href="produto.html" aria-current="page">Peça em destaque</a>
+  </nav>
+</header>
+
+<main class="product block">
+  <!-- GALERIA -->
+  <div>
+    <img class="gallery-main" id="mainImg" src="../assets/garrafas/kultu-39-01.jpg" alt="KULTU La Dama de Prata — vista frontal">
+    <div class="thumbs" id="thumbs">
+      <img src="../assets/garrafas/kultu-39-01.jpg" class="active" alt="Vista frontal">
+      <img src="../assets/garrafas/kultu-39-04.jpg" alt="Vista a três quartos">
+      <img src="../assets/garrafas/kultu-39-07.jpg" alt="Detalhe da coroa">
+      <img src="../assets/garrafas/kultu-39-10.jpg" alt="Perfil">
+      <img src="../assets/garrafas/kultu-39-13.jpg" alt="Detalhe das contas">
+      <img src="../assets/garrafas/kultu-39-16.jpg" alt="Vista posterior">
+    </div>
+  </div>
+
+  <!-- INFO -->
+  <div class="p-info">
+    <span class="eyebrow">Absinto · Edição limitada</span>
+    <h1 class="display">La Dama de Prata <em style="color:var(--gold)">N.º 0001</em></h1>
+    <div class="badges">
+      <span class="badge">Edição limitada</span>
+      <span class="badge">Peça única</span>
+      <span class="badge">Numerada e assinada à mão</span>
+    </div>
+    <p class="short">La Dama não nasceu de um molde — nasceu das mãos de Shazequin. Coroada de conchas e contas roxas, é a Catrina desta edição: elegante, irreverente, irrepetível.</p>
+
+    <div class="price-line">
+      <span class="price">€ —,—</span>
+      <span class="iva">IVA incluído · Envio seguro com embalagem protetora</span>
+    </div>
+
+    <button class="btn btn-solid buy" type="button">Adicionar ao carrinho</button>
+    <p class="p-note">As fotografias correspondem à garrafa exata que irá receber.</p>
+
+    <div class="lenda">
+      <h3>A lenda desta caveira</h3>
+      <p>Dizem que a Dama chegou ao altar da vida vestida de prata, com a coroa que os vivos lhe ofereceram — conchas do mar e contas roxas de quem já não teme o fim. É ela que abre o baile no Día de Los Muertos: quem a leva para casa, leva a festa consigo. Desfrute da sua KULTU nos momentos que não se repetem — brinde à vida.</p>
+    </div>
+
+    <table class="ficha">
+      <tr><td>Tipo de bebida</td><td>Absinto</td></tr>
+      <tr><td>Volume</td><td>[A confirmar]</td></tr>
+      <tr><td>Graduação alcoólica</td><td>[A confirmar]</td></tr>
+      <tr><td>Edição</td><td>Limitada · numerada à mão · N.º 0001</td></tr>
+      <tr><td>Arte</td><td>Shazequin — técnica mista</td></tr>
+      <tr><td>Origem</td><td>Portugal</td></tr>
+    </table>
+
+    <p class="p-warn"><strong>Beba com moderação. Venda proibida a menores de 18 anos.</strong> A transportadora pode exigir comprovação de idade na entrega.</p>
+  </div>
+</main>
+
+<footer class="site-footer">
+  <p class="warn">Beba com moderação. Venda proibida a menores de 18 anos.</p>
+  <div class="footer-cols">
+    <nav>
+      <a href="lenda.html">A Lenda</a>
+      <a href="artista.html">A Artista</a>
+      <a href="#">Privacidade</a>
+      <a href="#">Termos e Condições</a>
+      <a href="#">Envios e Devoluções</a>
+    </nav>
+    <p>© Aromas da Tarde Unipessoal Lda · Marca Kultu N.º 530779 · Arte por Shazequin</p>
+  </div>
+</footer>
+
+<script>
+document.getElementById('thumbs').addEventListener('click', function (e) {
+  if (e.target.tagName !== 'IMG') return;
+  document.getElementById('mainImg').src = e.target.src;
+  document.getElementById('mainImg').alt = e.target.alt;
+  this.querySelectorAll('img').forEach(function (t) { t.classList.remove('active'); });
+  e.target.classList.add('active');
+});
+</script>
+</body>
+</html>

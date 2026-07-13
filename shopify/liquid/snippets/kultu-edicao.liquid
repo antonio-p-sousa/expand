@@ -1,0 +1,42 @@
+{% comment %}
+  KULTU — badge de edição/exclusividade na página de produto.
+  Uso (no template de produto, junto ao título):
+    {% render 'kultu-edicao', product: product %}
+  Lê o metafield custom.numero_edicao. Mostra estado "peça de coleção" quando esgotado.
+{% endcomment %}
+
+{%- assign numero = product.metafields.custom.numero_edicao | default: blank -%}
+{%- assign disponivel = product.selected_or_first_available_variant.available -%}
+
+<div class="kultu-edicao">
+  {%- if numero != blank -%}
+    <span class="kultu-edicao__numero">N.º {{ numero }}</span>
+  {%- endif -%}
+  <span class="kultu-edicao__badges">
+    <span class="kultu-edicao__badge">Edição limitada</span>
+    <span class="kultu-edicao__badge">Peça única</span>
+    <span class="kultu-edicao__badge">Numerada e assinada à mão</span>
+  </span>
+  {%- unless disponivel -%}
+    <span class="kultu-edicao__esgotado">Peça de coleção — encontrou o seu dono</span>
+  {%- endunless -%}
+</div>
+
+{%- assign lenda = product.metafields.custom.lenda | default: blank -%}
+{%- if lenda != blank -%}
+  <div class="kultu-lenda">
+    <h3 class="kultu-lenda__titulo">A lenda desta caveira</h3>
+    <div class="kultu-lenda__texto">{{ lenda | newline_to_br }}</div>
+  </div>
+{%- endif -%}
+
+<style>
+  .kultu-edicao{display:flex;flex-direction:column;gap:.5rem;margin:.75rem 0 1.25rem}
+  .kultu-edicao__numero{font-size:1.35rem;letter-spacing:.12em;color:#c8a24a;font-weight:600}
+  .kultu-edicao__badges{display:flex;flex-wrap:wrap;gap:.4rem}
+  .kultu-edicao__badge{font-size:.72rem;text-transform:uppercase;letter-spacing:.08em;padding:.3rem .6rem;border:1px solid rgba(200,162,74,.45);border-radius:2px;opacity:.9}
+  .kultu-edicao__esgotado{font-size:.85rem;font-style:italic;opacity:.75}
+  .kultu-lenda{margin:1.5rem 0;padding:1.25rem;border-left:2px solid #c8a24a;background:rgba(200,162,74,.06)}
+  .kultu-lenda__titulo{font-size:.8rem;text-transform:uppercase;letter-spacing:.14em;margin:0 0 .6rem;opacity:.7}
+  .kultu-lenda__texto{line-height:1.65}
+</style>

@@ -1,0 +1,80 @@
+{% comment %}
+  KULTU — Age gate para venda de bebidas alcoólicas (DL 106/2015).
+  Instalar: adicionar {% section 'age-gate' %} no theme.liquid, logo após <body>.
+  Guarda a confirmação em localStorage (kultu_age_ok) durante N dias (setting).
+  Bloqueia o scroll até haver confirmação; recusa mostra mensagem sem navegação.
+{% endcomment %}
+
+<div id="kultu-age-gate" class="kultu-age-gate" hidden>
+  <div class="kultu-age-gate__panel" role="dialog" aria-modal="true" aria-labelledby="kultu-age-title">
+    {% if section.settings.logo %}
+      <img class="kultu-age-gate__logo" src="{{ section.settings.logo | image_url: width: 320 }}" alt="{{ shop.name }}" width="160" height="auto">
+    {% endif %}
+    <h2 id="kultu-age-title">{{ section.settings.title }}</h2>
+    <p>{{ section.settings.text }}</p>
+    <div class="kultu-age-gate__actions">
+      <button type="button" class="kultu-age-gate__yes" id="kultu-age-yes">{{ section.settings.yes_label }}</button>
+      <button type="button" class="kultu-age-gate__no" id="kultu-age-no">{{ section.settings.no_label }}</button>
+    </div>
+    <p class="kultu-age-gate__refused" id="kultu-age-refused" hidden>{{ section.settings.refused_text }}</p>
+    <p class="kultu-age-gate__legal">{{ section.settings.legal_note }}</p>
+  </div>
+</div>
+
+<style>
+  .kultu-age-gate{position:fixed;inset:0;z-index:9999;display:flex;align-items:center;justify-content:center;background:rgba(8,7,6,.96);backdrop-filter:blur(6px);padding:1.5rem}
+  .kultu-age-gate__panel{max-width:26rem;text-align:center;color:#f5efe4}
+  .kultu-age-gate__logo{margin:0 auto 1.5rem;display:block}
+  .kultu-age-gate__panel h2{font-size:1.75rem;margin:0 0 .75rem}
+  .kultu-age-gate__panel p{opacity:.85;line-height:1.5}
+  .kultu-age-gate__actions{display:flex;gap:.75rem;justify-content:center;margin:1.5rem 0 1rem;flex-wrap:wrap}
+  .kultu-age-gate__actions button{padding:.85rem 1.9rem;font-size:1rem;cursor:pointer;border-radius:2px}
+  .kultu-age-gate__yes{background:#c8a24a;border:1px solid #c8a24a;color:#141210}
+  .kultu-age-gate__yes:hover{background:#dab55c}
+  .kultu-age-gate__no{background:transparent;border:1px solid rgba(245,239,228,.4);color:#f5efe4}
+  .kultu-age-gate__legal{font-size:.75rem;opacity:.6;margin-top:1.25rem}
+  .kultu-age-gate__refused{color:#e6b0a8;font-weight:600}
+  body.kultu-age-locked{overflow:hidden}
+</style>
+
+<script>
+  (function () {
+    var DAYS = {{ section.settings.remember_days | default: 30 }};
+    var KEY = 'kultu_age_ok';
+    var gate = document.getElementById('kultu-age-gate');
+    if (!gate) return;
+    try {
+      var saved = JSON.parse(localStorage.getItem(KEY) || 'null');
+      if (saved && saved.exp > Date.now()) return; // já confirmado
+    } catch (e) { /* localStorage indisponível — mostra o gate */ }
+    gate.hidden = false;
+    document.body.classList.add('kultu-age-locked');
+    document.getElementById('kultu-age-yes').addEventListener('click', function () {
+      try {
+        localStorage.setItem(KEY, JSON.stringify({ exp: Date.now() + DAYS * 864e5 }));
+      } catch (e) { /* sessão apenas */ }
+      gate.hidden = true;
+      document.body.classList.remove('kultu-age-locked');
+    });
+    document.getElementById('kultu-age-no').addEventListener('click', function () {
+      document.querySelector('.kultu-age-gate__actions').hidden = true;
+      document.getElementById('kultu-age-refused').hidden = false;
+    });
+  })();
+</script>
+
+{% schema %}
+{
+  "name": "Age gate (18+)",
+  "settings": [
+    { "type": "image_picker", "id": "logo", "label": "Logo" },
+    { "type": "text", "id": "title", "label": "Título", "default": "É maior de 18 anos?" },
+    { "type": "textarea", "id": "text", "label": "Texto", "default": "Este site vende bebidas alcoólicas. Para entrar, confirme que tem idade legal para consumir álcool no seu país de residência." },
+    { "type": "text", "id": "yes_label", "label": "Botão sim", "default": "Sim, tenho 18 ou mais" },
+    { "type": "text", "id": "no_label", "label": "Botão não", "default": "Não" },
+    { "type": "textarea", "id": "refused_text", "label": "Mensagem de recusa", "default": "O acesso a este site é reservado a maiores de 18 anos." },
+    { "type": "text", "id": "legal_note", "label": "Nota legal", "default": "Beba com moderação. Venda proibida a menores de 18 anos." },
+    { "type": "range", "id": "remember_days", "label": "Lembrar confirmação (dias)", "min": 1, "max": 90, "step": 1, "default": 30 }
+  ]
+}
+{% endschema %}
