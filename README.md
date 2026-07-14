@@ -19,12 +19,18 @@ Loja Shopify monoproduto para a edição limitada **KULTU by Shazequin**: garraf
 
 ## Estado / pendentes do cliente
 
+- [x] ~~Ficha técnica~~ — **70 cl, 80% vol.** (mapa do site v2 do cliente, 14/07)
+- [x] ~~Copy das páginas~~ — **copy fechado pelo cliente** (14/07): homepage, produto, A Lenda, A Artista — já integrado em `content/` e no protótipo. EN pendente até fechar o PT.
 - [ ] **Lista final de garrafas à venda** — nomes, numeração manual e preço (o CSV usa nomes provisórios e preço placeholder)
 - [ ] Validar agrupamento das fotos (`assets/garrafas/mapa_fotos.csv` — 2 grupos marcados VALIDAR)
-- [ ] Ficha técnica: volume e graduação alcoólica do absinto
 - [ ] Confirmar se as fotos de 2019 correspondem ao stock atual
+- [ ] Foto da artista a trabalhar (pedido do próprio cliente para a página Sobre)
 - [ ] Acessos: loja Shopify, domínio kultu.pt, faturação AT
+- [ ] Envios: transportadora, prazos, custos, assinatura 18+ na entrega
 - [ ] Decisão MB WAY (não bloqueia lançamento)
+- [ ] Revisão jurídica das páginas legais antes de publicar (indicação do cliente)
+
+> Age gate: usar o **age verifier nativo do Savor**; recusa deve redirecionar para **fora do site**. A section Liquid custom fica como alternativa.
 
 ## Materiais fonte
 

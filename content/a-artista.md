@@ -1,6 +1,30 @@
 # A Artista — Shazequin / The Artist
 
-> Fonte: Small Bio - Shazequin.docx + Texto Catalogo Kultu.docx (secção "a simbiose da cor, do humor e da paixão"). Fotos: assets/artista/.
+> **SUBSTITUÍDO POR COPY FECHADO DO CLIENTE (14/07)** — usar a versão fechada abaixo. Versão anterior mantida no fim como referência EN (pendente). Nota do cliente: a página beneficia de uma **foto da artista a trabalhar** — pedir.
+
+## PT (versão fechada do cliente)
+
+### Título
+**Shazequin. A mulher que dá vida ao que já devia estar acabado.**
+
+### Corpo
+Nem sempre foi artista. Mas foi sempre apaixonada pela vida — e isso, mais cedo ou mais tarde, havia de dar em arte.
+
+Inglesa de nascença, sul-africana por escolha, portuguesa por adoção — foi em Portugal que Shazequin encontrou a maturidade que a transformou na artista que é hoje. Tudo começou em 2015, com um presente de aniversário fora do comum: um manequim. Em vez de o ignorar num canto, encarou-o como personagem e deu-lhe vida, pintando-o. O manequim, por sua vez, devolveu-lhe o favor — trouxe à tona uma Shazequin nova, cheia de uma criatividade que estivera adormecida até ali.
+
+Desde então, nunca mais parou. De manequins passou a bustos, de bustos a estatuetas, e das estatuetas às caveiras Kultu — cada peça pintada à mão, em técnica mista de acrílico, esmalte, óleo e spray, contorno de silicone e uma seleção própria de acessórios. O resultado: personagens únicas, que quebram convenções artísticas e sociais, estereótipos de género, e celebram a individualidade e a liberdade de expressão.
+
+Não há duas peças de Shazequin iguais. E é exatamente por isso que não há duas garrafas Kultu iguais.
+
+### Frase de fecho (destaque visual, tipo citação)
+> "Dou vida ao que já devia estar acabado — e é nessa vida que acredito."
+
+### CTA
+`[Conhecer a Edição Absinto Kultu →]`
+
+---
+
+## Versão anterior (referência para EN — pendente)
 
 ## PT
 

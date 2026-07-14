@@ -14,14 +14,13 @@
 <div class="age-gate" id="ageGate" hidden>
   <div class="age-panel">
     <div class="brand">KULTU<small>BY SHAZEQUIN</small></div>
-    <h2>É maior de 18 anos?</h2>
-    <p>Este site vende bebidas alcoólicas. Para entrar, confirme que tem idade legal para consumir álcool no seu país de residência.</p>
+    <h2>Este site vende bebidas alcoólicas.</h2>
+    <p>Para continuar, confirme que tem 18 anos ou mais.</p>
     <div class="age-actions" id="ageActions">
-      <button class="btn btn-solid" id="ageYes">Sim, tenho 18 ou mais</button>
-      <button class="btn btn-ghost" id="ageNo">Não</button>
+      <button class="btn btn-solid" id="ageYes">Tenho 18 anos ou mais</button>
+      <button class="btn btn-ghost" id="ageNo">Não tenho 18 anos</button>
     </div>
-    <p class="age-refused" id="ageRefused" hidden>O acesso a este site é reservado a maiores de 18 anos.</p>
-    <p class="age-legal">Beba com moderação. Venda proibida a menores de 18 anos.</p>
+    <p class="age-legal">Aprecie com responsabilidade. Venda proibida a menores de 18 anos.</p>
   </div>
 </div>
 
@@ -40,10 +39,10 @@
   <img class="hero-bg" src="../assets/garrafas/kultu-39-01.jpg" alt="Garrafa-caveira KULTU pintada à mão, prata com coroa de conchas">
   <div class="hero-content">
     <span class="eyebrow">Absinto · Edição limitada · Pintado à mão</span>
-    <h1 class="display">Autêntico e único,<br><em>como você.</em></h1>
-    <p class="lead">Cada garrafa KULTU é uma caveira pintada à mão pela artista Shazequin — numerada, assinada, irrepetível. Quando encontra o seu dono, não volta a existir outra igual.</p>
+    <h1 class="display">A morte nunca teve<br><em>tanta vida.</em></h1>
+    <p class="lead">Absinto de edição limitada, numa caveira pintada à mão pela artista Shazequin. Exclusiva, irrepetível, sua.</p>
     <div class="hero-ctas">
-      <a class="btn btn-solid" href="#colecao">Descobrir a coleção</a>
+      <a class="btn btn-solid" href="#colecao">Descobrir a Edição</a>
       <a class="btn btn-ghost" href="lenda.html">A Lenda</a>
     </div>
   </div>
@@ -62,10 +61,10 @@
     </figure>
     <div class="txt reveal">
       <span class="eyebrow">Día de Los Muertos</span>
-      <h2 class="display">As caveiras que celebram a vida</h2>
-      <p>Tudo começa no México, no Día de Los Muertos. Longe de falarem de morte, as caveiras são um hino à vida: decoradas para guardar boas memórias, proteger os entes queridos e afastar os maus espíritos.</p>
-      <p>Há pelo menos três mil anos que este culto se celebra. Desde 2003, é Património da Humanidade da UNESCO.</p>
-      <a class="link-more" href="lenda.html">Conhecer a Lenda →</a>
+      <h2 class="display">Uma caveira não é o fim. É um brinde à vida.</h2>
+      <p>No México, no Día de Los Muertos, a caveira não representa a morte — representa memória, celebração e vida. É esse espírito que a artista Shazequin traz para cada garrafa Kultu: pintada à mão, numerada, única.</p>
+      <p>Não há massificação. Não há duas garrafas iguais. Há apenas a sua.</p>
+      <a class="link-more" href="lenda.html">Conhecer a Lenda Kultu →</a>
     </div>
   </div>
 </section>
@@ -136,7 +135,7 @@
 </section>
 
 <footer class="site-footer">
-  <p class="warn">Beba com moderação. Venda proibida a menores de 18 anos.</p>
+  <p class="warn">Aprecie com responsabilidade. Venda proibida a menores de 18 anos.</p>
   <div class="footer-cols">
     <nav>
       <a href="lenda.html">A Lenda</a>
@@ -172,8 +171,8 @@
     gate.hidden = true; document.body.style.overflow = '';
   };
   document.getElementById('ageNo').onclick = function () {
-    document.getElementById('ageActions').hidden = true;
-    document.getElementById('ageRefused').hidden = false;
+    // indicação do cliente: recusa redireciona para fora do site
+    window.location.href = 'https://www.google.com';
   };
 })();
 // reveal on scroll

@@ -28,8 +28,11 @@ Ver [Política de Envios e Devoluções]. Envio com embalagem protetora especial
 6.2. A garrafa deve ser devolvida intacta, com selo/lacre inviolado e na embalagem original — tratando-se de bebida alcoólica selada e peça de coleção, a devolução de produto aberto ou danificado não é aceite.
 6.3. O reembolso é efetuado no prazo de 14 dias após a receção e verificação da peça.
 
-## 7. Responsabilidade e consumo responsável
-O consumo excessivo de álcool é prejudicial à saúde. Beba com moderação.
+## 7. Propriedade intelectual
+A compra de uma garrafa KULTU transfere a propriedade do objeto físico, mas **não transfere quaisquer direitos de autor sobre a obra artística** nela incorporada, que permanecem com a artista Shazequin e/ou com a KULTU nos termos da autorização de utilização de marca. É vedada a reprodução comercial da arte sem autorização escrita.
 
-## 8. Lei aplicável e litígios
+## 8. Responsabilidade e consumo responsável
+O consumo excessivo de álcool é prejudicial à saúde. Aprecie com responsabilidade.
+
+## 9. Lei aplicável e litígios
 Lei portuguesa. Em caso de litígio, o consumidor pode recorrer a uma entidade de resolução alternativa de litígios de consumo — [CENTRO RAL COMPETENTE] — ou à plataforma europeia ODR.

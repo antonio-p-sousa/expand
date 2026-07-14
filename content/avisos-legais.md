@@ -2,23 +2,18 @@
 
 > Base legal PT: DL n.º 106/2015 (proibição de venda/disponibilização de bebidas alcoólicas a menores de 18 anos, incl. venda à distância). Rever com apoio jurídico antes do Go-Live.
 
-## Age gate (entrada do site)
+## Age gate (entrada do site) — redação fechada pelo cliente (14/07)
 
-**PT**
-- Título: **É maior de 18 anos?**
-- Texto: Este site vende bebidas alcoólicas. Para entrar, confirme que tem idade legal para consumir álcool no seu país de residência.
-- Botões: `Sim, tenho 18 ou mais` / `Não`
-- Recusa → mensagem: *O acesso a este site é reservado a maiores de 18 anos.* (sem navegação)
+- Texto: **Este site vende bebidas alcoólicas. Para continuar, confirme que tem 18 anos ou mais.**
+- Botões: `Tenho 18 anos ou mais` / `Não tenho 18 anos`
+- Recusa → **redirecionar para fora do site** (ex.: google.com) — nunca para uma página de erro dentro da loja *(indicação explícita do cliente)*.
+- Nota Savor: o tema traz **age verifier nativo** — usar o nativo por defeito; a section Liquid custom (`shopify/liquid/sections/age-gate.liquid`) fica como alternativa se o nativo não cobrir a redação/comportamento.
 
-**EN**
-- Title: **Are you over 18?**
-- Text: This site sells alcoholic beverages. To enter, please confirm you are of legal drinking age in your country of residence.
-- Buttons: `Yes, I am 18 or over` / `No`
+## Avisos permanentes — redação fechada pelo cliente
 
-## Avisos permanentes
-
-- Rodapé (todas as páginas): **Beba com moderação. Venda proibida a menores de 18 anos.** / **Drink responsibly. Sale prohibited to under-18s.**
-- Página de produto: repetir aviso junto ao botão de compra.
+- Rodapé (todas as páginas): **Aprecie com responsabilidade. Venda proibida a menores de 18 anos.**
+  *(Nota do cliente: "Beba com moderação" é compromisso de autorregulação do setor, não imposição legal direta — a redação escolhida é "Aprecie com responsabilidade".)*
+- Ficha de produto: **Confirmação de idade obrigatória antes da compra. Venda proibida a menores de 18 anos. Consuma com responsabilidade.**
 - Checkout: nota de confirmação de idade — *Ao concluir a compra confirma que tem 18 anos ou mais. A entrega pode exigir comprovação de idade.*
 
 ## Confirmação na entrega

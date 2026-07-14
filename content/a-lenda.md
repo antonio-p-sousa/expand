@@ -1,6 +1,41 @@
 # A Lenda Kultu / The Kultu Legend
 
-> Fonte: Kultu.docx + Texto Catalogo Kultu.docx (secção Caveiras). Texto do cliente, com edição ligeira para web. NOTA: texto original refere "gin e vodka" numa versão e "absinto e ginja" noutra — versão abaixo alinhada ao foco confirmado (absinto); quantidades da edição (1.990 por cor) A CONFIRMAR com o cliente.
+> **SUBSTITUÍDO POR COPY FECHADO DO CLIENTE (14/07)** — usar a versão da secção "PT (versão fechada do cliente)" abaixo. A versão anterior mantém-se no fim apenas como referência EN (o EN fica pendente até fechar o PT).
+
+## PT (versão fechada do cliente)
+
+### Título
+**A Lenda Kultu — Uma Caveira, Mil Vidas.**
+
+### Abertura
+Há quem olhe para uma caveira e veja o fim. No México, olham para ela e veem tudo o resto.
+
+### Secção 1 — Día de Los Muertos
+Tudo começa no México, no Día de Los Muertos — uma celebração de origem indígena que honra os mortos, não com luto, mas com festa. Nesse dia, é como se a alma dos que já partiram visitasse os seus. Há iguarias, há doces, há música. Há vida, no seu sentido mais literal.
+
+O símbolo maior desta celebração é a caveira. E ao contrário do que se possa pensar à primeira vista, não tem nada de negativo. Para os povos indígenas, a caveira significa vida — e era decorada precisamente para afastar os maus espíritos.
+
+### Secção 2 — Raízes antigas
+A tradição é anterior à chegada dos europeus à América. Os povos nativos preservavam os crânios dos seus familiares como troféus, usando-os em rituais que celebravam tanto a morte como o renascimento. Há indícios de que maias, astecas, purépechas, náuatles e totonacas praticavam rituais semelhantes há, pelo menos, três mil anos.
+
+Hoje, o Día de Los Muertos tem reconhecimento internacional — a UNESCO reconheceu-o, em 2003, como Património da Humanidade.
+
+### Secção 3 — A Dama de la Muerte
+O ícone da festa é a *Dama de la Muerte*, Mictecacíhuatl — hoje associada à figura de La Catrina, criada pelo artista José Guadalupe Posada. Um esqueleto enfeitado a rigor, com chapéu e adereços que remetem à riqueza: uma forma bem-humorada de lembrar que, perante a morte, a classe social não pesa nada.
+
+### Secção 4 — O que a Kultu carrega
+É este espírito que a Kultu traz para cada garrafa. Não uma caveira que assusta — uma caveira que celebra. Pintada à mão por Shazequin, cada peça é irrepetível, tal como cada vida o é.
+
+Não há duas garrafas Kultu iguais, porque não há duas histórias iguais para contar.
+
+### Fecho + CTA
+A Kultu não é sobre a morte. É sobre o brinde que se faz à vida, sabendo que ela é única e que passa depressa.
+
+`[Descobrir a Edição Absinto Kultu →]`
+
+---
+
+## Versão anterior (referência para EN — pendente)
 
 ## PT
 
