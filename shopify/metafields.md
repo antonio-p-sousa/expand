@@ -4,7 +4,7 @@
 
 | Nome | Namespace/key | Tipo | Uso |
 |---|---|---|---|
-| Número da edição | `custom.numero_edicao` | Texto (linha única) | Numeração manual da garrafa (ex.: `0047/1990`). Mostrado em destaque na página de produto pelo snippet `kultu-edicao`. |
+| Número da edição | `custom.numero_da_edicao` | Texto (linha única) | Numeração manual da garrafa (ex.: `0047/1990`). Mostrado em destaque na página de produto pelo snippet `kultu-edicao`. |
 | Lenda da caveira | `custom.lenda` | Texto (multi-linha) | Descrição longa/narrativa da peça, separada do body para poder ter layout próprio. |
 
 ## Regras de catálogo

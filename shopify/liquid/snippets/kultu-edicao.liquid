@@ -2,10 +2,10 @@
   KULTU — badge de edição/exclusividade na página de produto.
   Uso (no template de produto, junto ao título):
     {% render 'kultu-edicao', product: product %}
-  Lê o metafield custom.numero_edicao. Mostra estado "peça de coleção" quando esgotado.
+  Lê o metafield custom.numero_da_edicao. Mostra estado "peça de coleção" quando esgotado.
 {% endcomment %}
 
-{%- assign numero = product.metafields.custom.numero_edicao | default: blank -%}
+{%- assign numero = product.metafields.custom.numero_da_edicao | default: blank -%}
 {%- assign disponivel = product.selected_or_first_available_variant.available -%}
 
 <div class="kultu-edicao">
