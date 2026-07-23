@@ -8,7 +8,8 @@ Loja Shopify monoproduto para a edição limitada **KULTU by Shazequin**: garraf
 
 | Pasta | Conteúdo |
 |---|---|
-| `assets/garrafas/` | 109 fotos otimizadas para web (1600px, JPEG progressivo), agrupadas por garrafa (`kultu-GG-NN.jpg`). `mapa_fotos.csv` mapeia grupos → fotos originais, com notas de validação. |
+| `assets/produtos/` | **As 160 garrafas finais da loja** (23/07): 1 foto por garrafa, `kultu-NNN.jpg`, em que **NNN = numeração da edição** (nome do ficheiro original do cliente). Otimizadas 1600px. Fotos em expositor de madeira, fundo claro. |
+| `assets/garrafas/` | Curadoria das fotos artísticas de 2019 (fundo preto), 39 grupos — úteis para hero/editorial e eventualmente galerias extra, mas **sem mapeamento para a numeração final** (pedir ao cliente se quiser associar). `mapa_fotos.csv` mapeia grupos → fotos originais. |
 | `assets/artista/` | Seleção de 12 fotos do atelier/obras da Shazequin (para páginas A Artista / O Processo). |
 | `assets/logos/` | Logos Kultu e KULTU by Shazequin. |
 | `content/` | Conteúdo final por página, PT/EN, pronto a colar no Shopify. |
@@ -21,9 +22,12 @@ Loja Shopify monoproduto para a edição limitada **KULTU by Shazequin**: garraf
 
 - [x] ~~Ficha técnica~~ — **70 cl, 80% vol.** (mapa do site v2 do cliente, 14/07)
 - [x] ~~Copy das páginas~~ — **copy fechado pelo cliente** (14/07): homepage, produto, A Lenda, A Artista — já integrado em `content/` e no protótipo. EN pendente até fechar o PT.
-- [ ] **Lista final de garrafas à venda** — nomes, numeração manual e preço (o CSV usa nomes provisórios e preço placeholder)
-- [ ] Validar agrupamento das fotos (`assets/garrafas/mapa_fotos.csv` — 2 grupos marcados VALIDAR)
-- [ ] Confirmar se as fotos de 2019 correspondem ao stock atual
+- [x] ~~Lista final de garrafas~~ — **160 garrafas recebidas (23/07)**, numeradas 1-160 pelas fotos; CSV regenerado com os 160 produtos (`shopify/products_import.csv`)
+- [x] ~~Acesso Shopify~~ — enviado pelo cliente (23/07)
+- [x] ~~Domínio~~ — www.kultu.pt registado (23/07)
+- [ ] **Preço da edição** — único valor em falta para ativar produtos (CSV com 0.00)
+- [ ] Nomes das garrafas (opcional — títulos atuais: "KULTU N.º NNN"; cliente pode acrescentar nomes)
+- [ ] Lendas por garrafa (opcional, metafield preparado)
 - [ ] Foto da artista a trabalhar (pedido do próprio cliente para a página Sobre)
 - [ ] Acessos: loja Shopify, domínio kultu.pt, faturação AT
 - [ ] Envios: transportadora, prazos, custos, assinatura 18+ na entrega
