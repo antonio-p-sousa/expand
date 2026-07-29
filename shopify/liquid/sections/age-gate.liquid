@@ -1,64 +1,118 @@
 {% comment %}
-  KULTU — Age gate para venda de bebidas alcoólicas (DL 106/2015).
-  NOTA: o tema Savor traz age verifier NATIVO — usar o nativo por defeito.
-  Esta section é a alternativa custom, se o nativo não cobrir a redação
-  ou o comportamento exigido pelo cliente (recusa redireciona para FORA
-  do site — nunca para uma página de erro dentro da loja).
-  Instalar: adicionar {% section 'age-gate' %} no theme.liquid, logo após <body>.
-  Guarda a confirmação em localStorage (kultu_age_ok) durante N dias (setting).
+  KULTU — Age gate 18+ (venda de bebidas alcoólicas, DL 106/2015).
+
+  COMO INSTALAR
+  1. Admin → Loja online → Temas → ⋯ → Editar código
+  2. Sections → Adicionar uma nova section → nome: age-gate → colar este ficheiro
+  3. Em Layout/theme.liquid, logo a seguir a <body>, acrescentar:
+       {% section 'age-gate' %}
+  4. Personalizar textos/logo no editor de temas (secção "Age gate 18+").
+
+  ALTERNATIVA: o tema Savor traz um age verifier nativo. Usar esta section quando
+  se quiser controlo sobre a redação, o design ou o comportamento da recusa
+  (indicação do cliente: a recusa sai do site, nunca uma página de erro interna).
+
+  Comportamento: bloqueia a página até haver confirmação; guarda em localStorage
+  (kultu_age_ok) durante N dias; foco preso no diálogo; respeita reduced-motion.
+  Alinhado com a direção de design "Colecção/Ofrenda" (marigold cempasúchil).
 {% endcomment %}
 
-<div id="kultu-age-gate" class="kultu-age-gate" hidden>
-  <div class="kultu-age-gate__panel" role="dialog" aria-modal="true" aria-labelledby="kultu-age-title">
+<div class="kultu-gate" id="kultu-gate" hidden>
+  <div class="kultu-gate__panel" role="dialog" aria-modal="true" aria-labelledby="kultu-gate-title">
     {% if section.settings.logo %}
-      <img class="kultu-age-gate__logo" src="{{ section.settings.logo | image_url: width: 320 }}" alt="{{ shop.name }}" width="160" height="auto">
+      <img class="kultu-gate__logo"
+           src="{{ section.settings.logo | image_url: width: 320 }}"
+           alt="{{ shop.name | escape }}" width="150" height="auto">
+    {% else %}
+      <div class="kultu-gate__mark">KULTU<small>BY SHAZEQUIN</small></div>
     {% endif %}
-    <h2 id="kultu-age-title">{{ section.settings.title }}</h2>
-    <p>{{ section.settings.text }}</p>
-    <div class="kultu-age-gate__actions">
-      <button type="button" class="kultu-age-gate__yes" id="kultu-age-yes">{{ section.settings.yes_label }}</button>
-      <button type="button" class="kultu-age-gate__no" id="kultu-age-no">{{ section.settings.no_label }}</button>
+
+    <div class="kultu-gate__rule"></div>
+
+    <h2 id="kultu-gate-title">{{ section.settings.title }}</h2>
+    <p class="kultu-gate__text">{{ section.settings.text }}</p>
+
+    <div class="kultu-gate__actions">
+      <button type="button" class="kultu-gate__yes" id="kultu-gate-yes">{{ section.settings.yes_label }}</button>
+      <button type="button" class="kultu-gate__no" id="kultu-gate-no">{{ section.settings.no_label }}</button>
     </div>
-    <p class="kultu-age-gate__legal">{{ section.settings.legal_note }}</p>
+
+    <p class="kultu-gate__legal">{{ section.settings.legal_note }}</p>
   </div>
 </div>
 
 <style>
-  .kultu-age-gate{position:fixed;inset:0;z-index:9999;display:flex;align-items:center;justify-content:center;background:rgba(8,7,6,.96);backdrop-filter:blur(6px);padding:1.5rem}
-  .kultu-age-gate__panel{max-width:26rem;text-align:center;color:#f5efe4}
-  .kultu-age-gate__logo{margin:0 auto 1.5rem;display:block}
-  .kultu-age-gate__panel h2{font-size:1.75rem;margin:0 0 .75rem}
-  .kultu-age-gate__panel p{opacity:.85;line-height:1.5}
-  .kultu-age-gate__actions{display:flex;gap:.75rem;justify-content:center;margin:1.5rem 0 1rem;flex-wrap:wrap}
-  .kultu-age-gate__actions button{padding:.85rem 1.9rem;font-size:1rem;cursor:pointer;border-radius:2px}
-  .kultu-age-gate__yes{background:#c8a24a;border:1px solid #c8a24a;color:#141210}
-  .kultu-age-gate__yes:hover{background:#dab55c}
-  .kultu-age-gate__no{background:transparent;border:1px solid rgba(245,239,228,.4);color:#f5efe4}
-  .kultu-age-gate__legal{font-size:.75rem;opacity:.6;margin-top:1.25rem}
-  body.kultu-age-locked{overflow:hidden}
+  .kultu-gate{position:fixed;inset:0;z-index:99999;display:grid;place-items:center;
+    background:#0A0A0B;padding:1.5rem}
+  .kultu-gate[hidden]{display:none}
+  .kultu-gate__panel{max-width:32rem;text-align:center;color:#E8E4DA;
+    font-family:"Archivo",system-ui,-apple-system,sans-serif;font-weight:300}
+  .kultu-gate__logo{margin:0 auto;display:block}
+  .kultu-gate__mark{font-family:"Bodoni Moda",Didot,"Times New Roman",serif;
+    font-size:2rem;letter-spacing:.32em}
+  .kultu-gate__mark small{display:block;font-family:inherit;font-size:.6rem;
+    letter-spacing:.34em;color:rgba(232,228,218,.62);margin-top:.5rem}
+  .kultu-gate__rule{width:2.5rem;height:2px;background:#FF6A1A;margin:2rem auto}
+  .kultu-gate h2{font-family:"Bodoni Moda",Didot,"Times New Roman",serif;
+    font-weight:400;font-size:clamp(1.5rem,4vw,2.2rem);line-height:1.15;margin:0 0 .9rem}
+  .kultu-gate__text{color:rgba(232,228,218,.62);font-size:.95rem;margin:0}
+  .kultu-gate__actions{display:flex;gap:.8rem;justify-content:center;
+    margin:2.2rem 0 1.6rem;flex-wrap:wrap}
+  .kultu-gate__actions button{font-family:inherit;font-size:.78rem;font-weight:500;
+    letter-spacing:.16em;text-transform:uppercase;padding:1.05rem 2.1rem;
+    border:1px solid transparent;cursor:pointer;transition:background .25s,border-color .25s}
+  .kultu-gate__yes{background:#FF6A1A;border-color:#FF6A1A;color:#0A0A0B}
+  .kultu-gate__yes:hover{background:#FF8642;border-color:#FF8642}
+  .kultu-gate__no{background:transparent;border-color:rgba(232,228,218,.30);color:#E8E4DA}
+  .kultu-gate__no:hover{border-color:#E8E4DA;background:rgba(232,228,218,.06)}
+  .kultu-gate button:focus-visible{outline:2px solid #FF6A1A;outline-offset:3px}
+  .kultu-gate__legal{font-size:.72rem;color:rgba(232,228,218,.30);line-height:1.6;
+    max-width:26rem;margin:0 auto}
+  body.kultu-gate-locked{overflow:hidden}
+  @media(prefers-reduced-motion:reduce){.kultu-gate *{transition:none!important}}
 </style>
 
 <script>
   (function () {
     var DAYS = {{ section.settings.remember_days | default: 30 }};
     var KEY = 'kultu_age_ok';
-    var gate = document.getElementById('kultu-age-gate');
+    var gate = document.getElementById('kultu-gate');
     if (!gate) return;
-    try {
-      var saved = JSON.parse(localStorage.getItem(KEY) || 'null');
-      if (saved && saved.exp > Date.now()) return; // já confirmado
-    } catch (e) { /* localStorage indisponível — mostra o gate */ }
+
+    /* No editor de temas mostra sempre, para se poder personalizar. */
+    var isEditor = window.Shopify && window.Shopify.designMode;
+
+    if (!isEditor) {
+      try {
+        var saved = JSON.parse(localStorage.getItem(KEY) || 'null');
+        if (saved && saved.exp > Date.now()) return; /* já confirmado */
+      } catch (e) { /* localStorage indisponível → mostra o gate */ }
+    }
+
     gate.hidden = false;
-    document.body.classList.add('kultu-age-locked');
-    document.getElementById('kultu-age-yes').addEventListener('click', function () {
+    document.body.classList.add('kultu-gate-locked');
+
+    var yes = document.getElementById('kultu-gate-yes');
+    var no = document.getElementById('kultu-gate-no');
+    yes.focus();
+
+    /* foco preso no diálogo enquanto está aberto */
+    gate.addEventListener('keydown', function (e) {
+      if (e.key !== 'Tab') return;
+      if (e.shiftKey && document.activeElement === yes) { e.preventDefault(); no.focus(); }
+      else if (!e.shiftKey && document.activeElement === no) { e.preventDefault(); yes.focus(); }
+    });
+
+    yes.addEventListener('click', function () {
       try {
         localStorage.setItem(KEY, JSON.stringify({ exp: Date.now() + DAYS * 864e5 }));
-      } catch (e) { /* sessão apenas */ }
+      } catch (e) { /* só nesta sessão */ }
       gate.hidden = true;
-      document.body.classList.remove('kultu-age-locked');
+      document.body.classList.remove('kultu-gate-locked');
     });
-    document.getElementById('kultu-age-no').addEventListener('click', function () {
-      // indicação do cliente: recusa redireciona para fora do site
+
+    no.addEventListener('click', function () {
+      /* indicação do cliente: a recusa sai do site, nunca página de erro interna */
       window.location.href = {{ section.settings.refuse_url | default: 'https://www.google.com' | json }};
     });
   })();
@@ -66,15 +120,15 @@
 
 {% schema %}
 {
-  "name": "Age gate (18+)",
+  "name": "Age gate 18+",
   "settings": [
-    { "type": "image_picker", "id": "logo", "label": "Logo" },
-    { "type": "text", "id": "title", "label": "Título", "default": "Este site vende bebidas alcoólicas." },
-    { "type": "textarea", "id": "text", "label": "Texto", "default": "Para continuar, confirme que tem 18 anos ou mais." },
-    { "type": "text", "id": "yes_label", "label": "Botão sim", "default": "Tenho 18 anos ou mais" },
-    { "type": "text", "id": "no_label", "label": "Botão não", "default": "Não tenho 18 anos" },
-    { "type": "url", "id": "refuse_url", "label": "URL de saída (recusa)", "info": "Recusa redireciona para fora do site — nunca para página de erro interna." },
-    { "type": "text", "id": "legal_note", "label": "Nota legal", "default": "Aprecie com responsabilidade. Venda proibida a menores de 18 anos." },
+    { "type": "image_picker", "id": "logo", "label": "Logo (opcional)", "info": "Sem logo, usa a marca em texto." },
+    { "type": "text", "id": "title", "label": "Título", "default": "Esta é uma edição de absinto. Só entra quem tem 18 anos." },
+    { "type": "textarea", "id": "text", "label": "Texto", "default": "Confirme a sua idade para ver a coleção." },
+    { "type": "text", "id": "yes_label", "label": "Botão de confirmação", "default": "Tenho 18 anos ou mais" },
+    { "type": "text", "id": "no_label", "label": "Botão de recusa", "default": "Não tenho" },
+    { "type": "url", "id": "refuse_url", "label": "URL de saída (recusa)", "info": "A recusa redireciona para fora do site — nunca para uma página de erro interna." },
+    { "type": "textarea", "id": "legal_note", "label": "Nota legal", "default": "A venda de bebidas alcoólicas a menores de 18 anos é proibida por lei (DL 106/2015). Ao entrar, confirma que tem idade legal para consumir álcool no seu país de residência. Aprecie com responsabilidade." },
     { "type": "range", "id": "remember_days", "label": "Lembrar confirmação (dias)", "min": 1, "max": 90, "step": 1, "default": 30 }
   ]
 }
