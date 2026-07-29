@@ -25,7 +25,10 @@ Loja Shopify monoproduto para a edição limitada **KULTU by Shazequin**: garraf
 - [x] ~~Lista final de garrafas~~ — **160 garrafas recebidas (23/07)**, numeradas 1-160 pelas fotos; CSV regenerado com os 160 produtos (`shopify/products_import.csv`)
 - [x] ~~Acesso Shopify~~ — enviado pelo cliente (23/07)
 - [x] ~~Domínio~~ — www.kultu.pt registado (23/07)
-- [ ] **Preço da edição** — único valor em falta para ativar produtos (CSV com 0.00)
+- [x] ~~**Preço da edição**~~ — **399 € (PVP, IVA 23% incl.)**, email do cliente 29/07. CSV atualizado nos 160 produtos.
+- [x] ~~Fotografias finais HD~~ — **recebidas 28/07**: estúdio, fundo branco, quadradas, **2 vistas por peça** (`assets/produtos-hd/`, 145 peças). Substituem as fotos de telemóvel em `assets/produtos/` (mantidas como fallback).
+- [ ] **15 peças sem foto nova** — nºs 9, 56, 60, 80, 107, 108, 111, 118, 129, 137, 138, 140, 148, 150, 159. Foram vendidas/retiradas ou as fotos ficaram por enviar? **Perguntar ao cliente.** (Mantêm a foto antiga entretanto.)
+- [ ] **Peça 147** — as fotos novas vieram de outra sessão (fundo preto, vertical) e destoam da grelha; pedir foto em fundo branco.
 - [ ] Nomes das garrafas (opcional — títulos atuais: "KULTU N.º NNN"; cliente pode acrescentar nomes)
 - [ ] Lendas por garrafa (opcional, metafield preparado)
 - [ ] Foto da artista a trabalhar (pedido do próprio cliente para a página Sobre)

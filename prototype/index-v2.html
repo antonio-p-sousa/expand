@@ -1,0 +1,534 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>KULTU by Shazequin — 160 peças. Nenhuma repetida.</title>
+<meta name="description" content="Edição limitada de 160 garrafas de absinto em caveira, pintadas à mão pela artista Shazequin. Cada peça é numerada, única e irrepetível.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400;0,6..96,500;0,6..96,700;1,6..96,400&family=Archivo:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+/* ═══════════════════════════════════════════════════════════════════
+   KULTU by Shazequin — direção "Colecção / Ofrenda"  (protótipo v2)
+
+   Porquê esta direção:
+   · O produto NÃO é uma bebida premium genérica — são 160 obras de arte
+     numeradas, irrepetíveis. O site tem de se comportar como o catálogo
+     de uma edição de arte, não como uma landing page de espirituosos.
+   · A cor vem da OBRA (marigold cempasúchil do Día de los Muertos, roxo
+     das contas), não de um dourado champanhe decorativo.
+   · As fotos de estúdio têm fundo preto puro → fundem-se no fundo escuro.
+     As fotos de produto têm fundo claro → vivem em "chapas" de museu.
+   ═══════════════════════════════════════════════════════════════════ */
+
+:root{
+  --noir:#0A0A0B;          /* fundo — funde com o preto das fotos de estúdio */
+  --noir-2:#131315;
+  --cal:#E8E4DA;           /* cal/estuque: off-white frio (não o creme genérico) */
+  --cal-dim:rgba(232,228,218,.62);
+  --cal-faint:rgba(232,228,218,.30);
+  --cempasuchil:#FF6A1A;   /* marigold — a flor do Día de los Muertos. O acento. */
+  --jacaranda:#5B3AA6;     /* roxo das contas das garrafas (secundário, raro) */
+  --rule:rgba(232,228,218,.16);
+  --display:"Bodoni Moda",Didot,"Times New Roman",serif;
+  --ui:"Archivo",system-ui,-apple-system,sans-serif;
+  --ease:cubic-bezier(.16,1,.3,1);
+}
+
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{
+  background:var(--noir);color:var(--cal);
+  font-family:var(--ui);font-weight:300;line-height:1.6;
+  -webkit-font-smoothing:antialiased;overflow-x:hidden;
+}
+img{max-width:100%;display:block}
+a{color:inherit;text-decoration:none}
+
+/* ── átomos ────────────────────────────────────────────────────── */
+.wrap{max-width:1280px;margin:0 auto;padding:0 clamp(1.2rem,4vw,3.5rem)}
+
+/* chapa de museu: o dispositivo estrutural do site. Encoda algo verdadeiro
+   (as peças SÃO numeradas 001–160), não é decoração. */
+.plate{
+  font-family:var(--display);font-variant-numeric:tabular-nums;
+  font-size:.9rem;letter-spacing:.06em;color:var(--cal-dim);
+  display:flex;align-items:baseline;gap:.6rem;
+}
+.plate b{font-weight:500;color:var(--cal)}
+.plate::after{content:"";flex:1;height:1px;background:var(--rule)}
+
+.label{
+  font-family:var(--ui);font-size:.68rem;font-weight:500;
+  letter-spacing:.22em;text-transform:uppercase;color:var(--cempasuchil);
+}
+.display{font-family:var(--display);font-weight:400;line-height:.98;letter-spacing:-.015em;text-wrap:balance}
+.display em{font-style:italic;font-weight:400}
+
+.btn{
+  display:inline-flex;align-items:center;gap:.7rem;
+  font-family:var(--ui);font-size:.78rem;font-weight:500;
+  letter-spacing:.16em;text-transform:uppercase;
+  padding:1.05rem 2.1rem;border:1px solid transparent;cursor:pointer;
+  transition:background .25s var(--ease),color .25s var(--ease),border-color .25s var(--ease);
+}
+.btn-solid{background:var(--cempasuchil);color:#0A0A0B;border-color:var(--cempasuchil)}
+.btn-solid:hover{background:#FF8642;border-color:#FF8642}
+.btn-line{border-color:var(--cal-faint);color:var(--cal)}
+.btn-line:hover{border-color:var(--cal);background:rgba(232,228,218,.06)}
+.btn:focus-visible,a:focus-visible{outline:2px solid var(--cempasuchil);outline-offset:3px}
+
+/* ── AGE GATE (18+) — a soleira ────────────────────────────────── */
+.gate{position:fixed;inset:0;z-index:9999;background:var(--noir);display:grid;place-items:center;padding:1.5rem}
+.gate[hidden]{display:none}
+.gate__mosaic{position:absolute;inset:0;display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));opacity:.22;filter:grayscale(.3)}
+.gate__mosaic img{width:100%;height:100%;object-fit:cover;aspect-ratio:2/3}
+.gate__panel{position:relative;max-width:32rem;text-align:center}
+.gate__mark{font-family:var(--display);font-size:2rem;letter-spacing:.32em;margin-bottom:.4rem}
+.gate__mark small{display:block;font-family:var(--ui);font-size:.6rem;letter-spacing:.34em;color:var(--cal-dim);margin-top:.5rem}
+.gate__rule{width:2.5rem;height:2px;background:var(--cempasuchil);margin:2rem auto}
+.gate h1{font-family:var(--display);font-size:clamp(1.6rem,4vw,2.3rem);font-weight:400;line-height:1.15;margin-bottom:.9rem}
+.gate p{color:var(--cal-dim);font-size:.95rem}
+.gate__actions{display:flex;gap:.8rem;justify-content:center;margin:2.2rem 0 1.6rem;flex-wrap:wrap}
+.gate__legal{font-size:.72rem;color:var(--cal-faint);line-height:1.6;max-width:26rem;margin:0 auto}
+body.locked{overflow:hidden}
+
+/* ── HEADER ────────────────────────────────────────────────────── */
+.hdr{position:sticky;top:0;z-index:80;background:rgba(10,10,11,.86);backdrop-filter:blur(12px);border-bottom:1px solid var(--rule)}
+.hdr__in{display:flex;align-items:center;gap:2rem;padding:1.1rem 0}
+.mark{font-family:var(--display);font-size:1.35rem;letter-spacing:.3em;white-space:nowrap}
+.mark small{display:block;font-family:var(--ui);font-size:.52rem;letter-spacing:.3em;color:var(--cal-dim);margin-top:.3rem}
+.nav{display:flex;gap:2rem;margin-left:auto;font-size:.76rem;letter-spacing:.14em;text-transform:uppercase}
+.nav a{color:var(--cal-dim);transition:color .2s}
+.nav a:hover{color:var(--cal)}
+.hdr__count{font-family:var(--display);font-variant-numeric:tabular-nums;font-size:.8rem;color:var(--cempasuchil);letter-spacing:.08em}
+@media(max-width:860px){.nav{display:none}}
+
+/* ── HERO: a ofrenda ───────────────────────────────────────────── */
+/* O risco assumido: o herói não é UMA garrafa glamorosa — é a COLEÇÃO
+   inteira a olhar para nós. É o que torna esta edição o que ela é. */
+.hero{position:relative;padding:clamp(3rem,8vw,6rem) 0 clamp(3rem,7vw,5rem)}
+.hero__grid{
+  display:grid;grid-template-columns:repeat(auto-fit,minmax(112px,1fr));
+  gap:2px;margin-bottom:clamp(2.5rem,6vw,4rem);
+}
+.hero__grid img{width:100%;aspect-ratio:2/3;object-fit:cover;opacity:.9;transition:opacity .4s var(--ease),transform .5s var(--ease)}
+.hero__grid a:hover img{opacity:1;transform:scale(1.03)}
+.hero__grid a{overflow:hidden;display:block;background:#000}
+.hero__say{display:grid;grid-template-columns:1.15fr .85fr;gap:clamp(2rem,5vw,4rem);align-items:end}
+.hero h1{font-size:clamp(2.9rem,8.5vw,7rem)}
+.hero h1 .big{display:block;font-variant-numeric:lining-nums;letter-spacing:-.03em}
+.hero h1 em{color:var(--cempasuchil)}
+.hero__lead{color:var(--cal-dim);font-size:clamp(.95rem,1.4vw,1.08rem);max-width:34ch;margin-bottom:1.8rem}
+.hero__ctas{display:flex;gap:.8rem;flex-wrap:wrap}
+@media(max-width:860px){.hero__say{grid-template-columns:1fr;align-items:start}}
+
+/* ── faixa de dados (a edição em números) ──────────────────────── */
+.facts{border-top:1px solid var(--rule);border-bottom:1px solid var(--rule);margin-top:clamp(3rem,7vw,5rem)}
+.facts__in{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr))}
+.fact{padding:2rem 0;border-right:1px solid var(--rule)}
+.fact:last-child{border-right:0}
+.fact dt{font-size:.66rem;letter-spacing:.2em;text-transform:uppercase;color:var(--cal-faint);margin-bottom:.6rem}
+.fact dd{font-family:var(--display);font-size:clamp(1.6rem,3vw,2.2rem);font-variant-numeric:tabular-nums}
+@media(max-width:700px){.fact{border-right:0;border-bottom:1px solid var(--rule);padding:1.4rem 0}.fact:last-child{border-bottom:0}}
+
+/* ── secções ───────────────────────────────────────────────────── */
+.sec{padding:clamp(4rem,10vw,8rem) 0}
+.sec--light{background:var(--cal);color:var(--noir)}
+.sec--light .plate{color:rgba(10,10,11,.6)}
+.sec--light .plate b{color:var(--noir)}
+.sec--light .plate::after{background:rgba(10,10,11,.18)}
+.sec--light .label{color:#C24A00}
+.sec__head{max-width:44rem;margin-bottom:clamp(2rem,5vw,3.5rem)}
+.sec__head h2{font-size:clamp(2rem,5vw,3.4rem);margin:1rem 0}
+.sec__head p{color:var(--cal-dim);max-width:52ch}
+.sec--light .sec__head p{color:rgba(10,10,11,.68)}
+
+/* editorial: foto de estúdio a fundir-se no preto */
+.edit{display:grid;grid-template-columns:1fr 1fr;gap:clamp(2rem,6vw,5rem);align-items:center}
+.edit--flip .edit__fig{order:2}
+.edit__fig img{width:100%;aspect-ratio:3/4;object-fit:cover;background:#000}
+.edit__txt h2{font-size:clamp(1.9rem,4.2vw,3rem);margin:1rem 0 1.2rem}
+.edit__txt p{color:var(--cal-dim);margin-bottom:1rem;max-width:46ch}
+.sec--light .edit__txt p{color:rgba(10,10,11,.7)}
+.more{display:inline-block;margin-top:.8rem;font-size:.78rem;letter-spacing:.16em;text-transform:uppercase;color:var(--cempasuchil);border-bottom:1px solid currentColor;padding-bottom:.25rem}
+@media(max-width:860px){.edit{grid-template-columns:1fr}.edit--flip .edit__fig{order:0}}
+
+/* ── catálogo: chapas de museu ─────────────────────────────────── */
+.cat{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:clamp(1.4rem,3vw,2.6rem)}
+.piece{display:block;color:inherit}
+/* As fotos finais (28/07) são quadradas com fundo branco de estúdio → cada peça
+   vive numa "chapa" branca sobre o estuque. Duas vistas por peça (A/B): a
+   segunda revela-se ao passar o rato — mostra o objeto, não um efeito. */
+.piece__img{position:relative;background:#fff;overflow:hidden;margin-bottom:1rem;aspect-ratio:1/1}
+.piece__img img{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;
+  padding:6%;transition:transform .6s var(--ease),opacity .45s var(--ease)}
+.piece__img .b{opacity:0}
+.piece:hover .piece__img .a{opacity:0}
+.piece:hover .piece__img .b{opacity:1}
+.piece:hover .piece__img img{transform:scale(1.03)}
+@media(hover:none){.piece__img .b{display:none}}
+.piece__plate{display:flex;justify-content:space-between;align-items:baseline;gap:1rem;
+  font-family:var(--display);font-variant-numeric:tabular-nums;font-size:1rem;
+  padding-bottom:.55rem;border-bottom:1px solid rgba(10,10,11,.2)}
+.piece__meta{display:flex;justify-content:space-between;margin-top:.55rem;
+  font-size:.7rem;letter-spacing:.14em;text-transform:uppercase;color:rgba(10,10,11,.55)}
+.piece--sold .piece__img img{filter:grayscale(1);opacity:.55}
+.piece--sold .piece__meta span:last-child{color:#C24A00;font-weight:600}
+
+/* ── escassez / fecho ──────────────────────────────────────────── */
+.close{text-align:center;max-width:46rem;margin:0 auto}
+.close h2{font-size:clamp(2rem,5.5vw,3.6rem);margin:1.2rem 0}
+.close p{color:var(--cal-dim);margin-bottom:2rem}
+
+/* ── processo ──────────────────────────────────────────────────── */
+.steps{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:1px;background:var(--rule);border:1px solid var(--rule)}
+.step{background:var(--noir);padding:clamp(1.6rem,3vw,2.4rem)}
+.step__n{font-family:var(--display);font-size:2.4rem;color:var(--cempasuchil);line-height:1;margin-bottom:1rem}
+.step h3{font-size:1rem;font-weight:500;letter-spacing:.04em;margin-bottom:.5rem}
+.step p{font-size:.88rem;color:var(--cal-dim)}
+
+/* ── footer ────────────────────────────────────────────────────── */
+.ftr{border-top:1px solid var(--rule);padding:clamp(2.5rem,5vw,4rem) 0 2rem}
+.ftr__warn{border:1px solid var(--cempasuchil);color:var(--cempasuchil);padding:.9rem 1.4rem;
+  font-size:.74rem;letter-spacing:.14em;text-transform:uppercase;text-align:center;margin-bottom:2.5rem}
+.ftr__cols{display:flex;flex-wrap:wrap;gap:2rem;justify-content:space-between;align-items:flex-start}
+.ftr nav{display:flex;flex-wrap:wrap;gap:1.6rem;font-size:.8rem;color:var(--cal-dim)}
+.ftr__fine{font-size:.72rem;color:var(--cal-faint);margin-top:2rem;line-height:1.7}
+
+/* ── reveal ────────────────────────────────────────────────────── */
+.rev{opacity:0;transform:translateY(18px);transition:opacity .8s var(--ease),transform .8s var(--ease)}
+.rev.in{opacity:1;transform:none}
+@media(prefers-reduced-motion:reduce){
+  .rev{opacity:1;transform:none;transition:none}
+  *{transition:none!important;animation:none!important}
+  html{scroll-behavior:auto}
+}
+</style>
+</head>
+<body>
+
+<!-- ═══ AGE GATE ═══════════════════════════════════════════════════ -->
+<div class="gate" id="gate" hidden>
+  <div class="gate__mosaic" aria-hidden="true">
+    <img src="../assets/garrafas/kultu-03-01.jpg" alt=""><img src="../assets/garrafas/kultu-07-01.jpg" alt="">
+    <img src="../assets/garrafas/kultu-12-01.jpg" alt=""><img src="../assets/garrafas/kultu-19-01.jpg" alt="">
+    <img src="../assets/garrafas/kultu-23-01.jpg" alt=""><img src="../assets/garrafas/kultu-28-01.jpg" alt="">
+    <img src="../assets/garrafas/kultu-31-01.jpg" alt=""><img src="../assets/garrafas/kultu-36-01.jpg" alt="">
+    <img src="../assets/garrafas/kultu-39-01.jpg" alt=""><img src="../assets/garrafas/kultu-05-01.jpg" alt="">
+    <img src="../assets/garrafas/kultu-14-01.jpg" alt=""><img src="../assets/garrafas/kultu-21-01.jpg" alt="">
+  </div>
+  <div class="gate__panel" role="dialog" aria-modal="true" aria-labelledby="gate-title">
+    <div class="gate__mark">KULTU<small>BY SHAZEQUIN</small></div>
+    <div class="gate__rule"></div>
+    <h1 id="gate-title">Esta é uma edição de absinto.<br>Só entra quem tem 18 anos.</h1>
+    <p>Confirme a sua idade para ver a coleção.</p>
+    <div class="gate__actions">
+      <button class="btn btn-solid" id="gate-yes" type="button">Tenho 18 anos ou mais</button>
+      <button class="btn btn-line" id="gate-no" type="button">Não tenho</button>
+    </div>
+    <p class="gate__legal">
+      A venda de bebidas alcoólicas a menores de 18 anos é proibida por lei (DL 106/2015).
+      Ao entrar, confirma que tem idade legal para consumir álcool no seu país de residência.
+      Aprecie com responsabilidade.
+    </p>
+  </div>
+</div>
+
+<!-- ═══ HEADER ═════════════════════════════════════════════════════ -->
+<header class="hdr">
+  <div class="wrap hdr__in">
+    <a class="mark" href="#top">KULTU<small>BY SHAZEQUIN</small></a>
+    <nav class="nav">
+      <a href="#colecao">A Coleção</a>
+      <a href="lenda.html">A Lenda</a>
+      <a href="artista.html">A Artista</a>
+      <a href="#processo">O Processo</a>
+    </nav>
+    <span class="hdr__count">160 · edição limitada</span>
+  </div>
+</header>
+
+<main id="top">
+
+<!-- ═══ HERO — a ofrenda ═══════════════════════════════════════════ -->
+<section class="hero">
+  <div class="wrap">
+    <!-- A coleção inteira como herói: 160 peças, nenhuma repetida. -->
+    <div class="hero__grid rev">
+      <a href="produto.html"><img src="../assets/garrafas/kultu-39-01.jpg" alt="KULTU prateada com coroa de conchas e contas roxas" loading="eager" fetchpriority="high"></a>
+      <a href="produto.html"><img src="../assets/garrafas/kultu-05-01.jpg" alt="KULTU com pintura grafíti multicolor" loading="eager"></a>
+      <a href="produto.html"><img src="../assets/garrafas/kultu-19-01.jpg" alt="KULTU preta e prateada com penas amarelas" loading="lazy"></a>
+      <a href="produto.html"><img src="../assets/garrafas/kultu-23-01.jpg" alt="KULTU prateada com penas pretas" loading="lazy"></a>
+      <a href="produto.html"><img src="../assets/garrafas/kultu-08-01.jpg" alt="KULTU bronze com coroa de contas" loading="lazy"></a>
+      <a href="produto.html"><img src="../assets/garrafas/kultu-28-01.jpg" alt="KULTU azul com laço vermelho" loading="lazy"></a>
+      <a href="produto.html"><img src="../assets/garrafas/kultu-36-01.jpg" alt="KULTU preta com penas amarelas" loading="lazy"></a>
+      <a href="produto.html"><img src="../assets/garrafas/kultu-13-01.jpg" alt="KULTU dourada com corrente" loading="lazy"></a>
+      <a href="produto.html"><img src="../assets/garrafas/kultu-31-01.jpg" alt="KULTU com adereços de festa" loading="lazy"></a>
+      <a href="produto.html"><img src="../assets/garrafas/kultu-12-01.jpg" alt="KULTU pintada em tons quentes" loading="lazy"></a>
+      <a href="produto.html"><img src="../assets/garrafas/kultu-21-01.jpg" alt="KULTU com pintura folk" loading="lazy"></a>
+      <a href="produto.html"><img src="../assets/garrafas/kultu-03-01.jpg" alt="KULTU com acabamento metálico" loading="lazy"></a>
+    </div>
+
+    <div class="hero__say">
+      <h1 class="display rev">
+        <span class="big">160 peças.</span>
+        <em>Nenhuma repetida.</em>
+      </h1>
+      <div class="rev">
+        <p class="hero__lead">
+          Absinto numa caveira de vidro, pintada à mão pela artista Shazequin.
+          Cada peça é numerada, assinada e existe uma única vez — quando sai, não volta.
+        </p>
+        <div class="hero__ctas">
+          <a class="btn btn-solid" href="#colecao">Ver a coleção</a>
+          <a class="btn btn-line" href="lenda.html">A lenda</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- a edição em números -->
+  <div class="facts">
+    <div class="wrap">
+      <dl class="facts__in">
+        <div class="fact"><dt>Edição</dt><dd>160</dd></div>
+        <div class="fact"><dt>Peças iguais</dt><dd>0</dd></div>
+        <div class="fact"><dt>Volume</dt><dd>70 cl · 80%</dd></div>
+        <div class="fact"><dt>Preço por peça</dt><dd>399 €</dd></div>
+      </dl>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ A LENDA ════════════════════════════════════════════════════ -->
+<section class="sec">
+  <div class="wrap">
+    <div class="edit">
+      <figure class="edit__fig rev">
+        <img src="../assets/garrafas/kultu-37-01.jpg" alt="Garrafa KULTU com pintura folk multicolor inspirada no Día de los Muertos" loading="lazy">
+      </figure>
+      <div class="edit__txt rev">
+        <span class="label">Día de los Muertos</span>
+        <h2 class="display">Uma caveira não é o fim.<br>É um <em>brinde à vida</em>.</h2>
+        <p>No México, no Día de los Muertos, a caveira não representa a morte — representa memória, celebração e vida. É esse espírito que Shazequin traz para cada garrafa: pintada à mão, numerada, única.</p>
+        <p>Não há massificação. Não há duas garrafas iguais. Há apenas a sua.</p>
+        <a class="more" href="lenda.html">Conhecer a lenda</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ A COLEÇÃO — chapas de museu ═══════════════════════════════ -->
+<section class="sec sec--light" id="colecao">
+  <div class="wrap">
+    <div class="sec__head rev">
+      <span class="label">A Coleção</span>
+      <h2 class="display">160 peças, uma de cada vez</h2>
+      <p>O preço é o mesmo em toda a edição — 399 €. O que nunca se repete é a peça.
+         Cada garrafa tem o seu número gravado no suporte, da 001 à 160.</p>
+    </div>
+
+    <div class="cat">
+      <a class="piece rev" href="produto.html">
+        <div class="piece__img">
+          <img class="a" src="../assets/produtos-hd/kultu-001-a.jpg" alt="KULTU N.º 001 — caveira preta com olhos brancos e azuis e fechos-éclair nos dentes" loading="lazy">
+          <img class="b" src="../assets/produtos-hd/kultu-001-b.jpg" alt="" aria-hidden="true" loading="lazy">
+        </div>
+        <div class="piece__plate"><b>N.º 001</b><span>399 €</span></div>
+        <div class="piece__meta"><span>Peça única</span><span>Disponível</span></div>
+      </a>
+      <a class="piece rev" href="produto.html">
+        <div class="piece__img">
+          <img class="a" src="../assets/produtos-hd/kultu-020-a.jpg" alt="KULTU N.º 020" loading="lazy">
+          <img class="b" src="../assets/produtos-hd/kultu-020-b.jpg" alt="" aria-hidden="true" loading="lazy">
+        </div>
+        <div class="piece__plate"><b>N.º 020</b><span>399 €</span></div>
+        <div class="piece__meta"><span>Peça única</span><span>Disponível</span></div>
+      </a>
+      <a class="piece rev" href="produto.html">
+        <div class="piece__img">
+          <img class="a" src="../assets/produtos-hd/kultu-045-a.jpg" alt="KULTU N.º 045" loading="lazy">
+          <img class="b" src="../assets/produtos-hd/kultu-045-b.jpg" alt="" aria-hidden="true" loading="lazy">
+        </div>
+        <div class="piece__plate"><b>N.º 045</b><span>399 €</span></div>
+        <div class="piece__meta"><span>Peça única</span><span>Disponível</span></div>
+      </a>
+      <a class="piece rev" href="produto.html">
+        <div class="piece__img">
+          <img class="a" src="../assets/produtos-hd/kultu-070-a.jpg" alt="KULTU N.º 070" loading="lazy">
+          <img class="b" src="../assets/produtos-hd/kultu-070-b.jpg" alt="" aria-hidden="true" loading="lazy">
+        </div>
+        <div class="piece__plate"><b>N.º 070</b><span>399 €</span></div>
+        <div class="piece__meta"><span>Peça única</span><span>Disponível</span></div>
+      </a>
+      <a class="piece rev" href="produto.html">
+        <div class="piece__img">
+          <img class="a" src="../assets/produtos-hd/kultu-095-a.jpg" alt="KULTU N.º 095" loading="lazy">
+          <img class="b" src="../assets/produtos-hd/kultu-095-b.jpg" alt="" aria-hidden="true" loading="lazy">
+        </div>
+        <div class="piece__plate"><b>N.º 095</b><span>399 €</span></div>
+        <div class="piece__meta"><span>Peça única</span><span>Disponível</span></div>
+      </a>
+      <a class="piece rev" href="produto.html">
+        <div class="piece__img">
+          <img class="a" src="../assets/produtos-hd/kultu-120-a.jpg" alt="KULTU N.º 120" loading="lazy">
+          <img class="b" src="../assets/produtos-hd/kultu-120-b.jpg" alt="" aria-hidden="true" loading="lazy">
+        </div>
+        <div class="piece__plate"><b>N.º 120</b><span>399 €</span></div>
+        <div class="piece__meta"><span>Peça única</span><span>Disponível</span></div>
+      </a>
+      <a class="piece rev" href="produto.html">
+        <div class="piece__img">
+          <img class="a" src="../assets/produtos-hd/kultu-145-a.jpg" alt="KULTU N.º 145" loading="lazy">
+          <img class="b" src="../assets/produtos-hd/kultu-145-b.jpg" alt="" aria-hidden="true" loading="lazy">
+        </div>
+        <div class="piece__plate"><b>N.º 145</b><span>399 €</span></div>
+        <div class="piece__meta"><span>Peça única</span><span>Disponível</span></div>
+      </a>
+      <!-- estado "vendida": a escassez é real e mostra-se -->
+      <a class="piece piece--sold rev" href="produto.html">
+        <div class="piece__img">
+          <img class="a" src="../assets/produtos-hd/kultu-160-a.jpg" alt="KULTU N.º 160 — vendida" loading="lazy">
+        </div>
+        <div class="piece__plate"><b>N.º 160</b><span>—</span></div>
+        <div class="piece__meta"><span>Peça única</span><span>Vendida</span></div>
+      </a>
+    </div>
+
+    <div style="text-align:center;margin-top:clamp(2.5rem,5vw,3.5rem)">
+      <a class="btn btn-solid" href="#">Ver as 160 peças</a>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ A ARTISTA ══════════════════════════════════════════════════ -->
+<section class="sec">
+  <div class="wrap">
+    <div class="edit edit--flip">
+      <figure class="edit__fig rev">
+        <img src="../assets/artista/shazequin-2726.jpg" alt="Atelier de Shazequin, com manequins e figuras pintadas à mão" loading="lazy">
+      </figure>
+      <div class="edit__txt rev">
+        <span class="label">A Artista</span>
+        <h2 class="display">Shazequin</h2>
+        <p>Artista britânica radicada em Portugal, dá nova vida a manequins, bustos e figuras numa efusão de cor, humor e liberdade que quebra convenções e celebra a individualidade.</p>
+        <p>Cada caveira KULTU nasce das suas mãos — acrílico, esmalte, óleo e spray, contornos de silicone e os adereços que fazem de cada peça uma personagem.</p>
+        <a class="more" href="artista.html">Conhecer a artista</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ O PROCESSO ═════════════════════════════════════════════════ -->
+<section class="sec" id="processo">
+  <div class="wrap">
+    <div class="sec__head rev">
+      <span class="label">O Processo</span>
+      <h2 class="display">Cada garrafa, uma obra</h2>
+    </div>
+    <div class="steps rev">
+      <div class="step"><div class="step__n">i</div><h3>O vidro</h3><p>A caveira, inspirada no Día de los Muertos.</p></div>
+      <div class="step"><div class="step__n">ii</div><h3>A pintura</h3><p>Técnica mista, camada sobre camada.</p></div>
+      <div class="step"><div class="step__n">iii</div><h3>Os adereços</h3><p>Cada personagem ganha os seus.</p></div>
+      <div class="step"><div class="step__n">iv</div><h3>A numeração</h3><p>Manual, única, assinada.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ FECHO — escassez ═══════════════════════════════════════════ -->
+<section class="sec sec--light">
+  <div class="wrap close rev">
+    <span class="label">Edição limitada</span>
+    <h2 class="display">Quando uma sai,<br>não volta.</h2>
+    <p>São 160 peças no total. Não haverá reedição, nem uma segunda igual —
+       porque nenhuma delas foi feita duas vezes.</p>
+    <a class="btn btn-solid" href="#colecao">Escolher a sua peça</a>
+  </div>
+</section>
+
+</main>
+
+<!-- ═══ FOOTER ═════════════════════════════════════════════════════ -->
+<footer class="ftr">
+  <div class="wrap">
+    <p class="ftr__warn">Aprecie com responsabilidade · Venda proibida a menores de 18 anos</p>
+    <div class="ftr__cols">
+      <a class="mark" href="#top">KULTU<small>BY SHAZEQUIN</small></a>
+      <nav>
+        <a href="lenda.html">A Lenda</a>
+        <a href="artista.html">A Artista</a>
+        <a href="#">Contactos</a>
+        <a href="#">Privacidade</a>
+        <a href="#">Termos e Condições</a>
+        <a href="#">Envios e Devoluções</a>
+      </nav>
+    </div>
+    <p class="ftr__fine">
+      © Aromas da Tarde Unipessoal Lda · Marca Kultu N.º 530779 · Arte por Shazequin.<br>
+      A venda de bebidas alcoólicas a menores de 18 anos é proibida (DL 106/2015). É exigida assinatura de maior de 18 anos na entrega.
+    </p>
+  </div>
+</footer>
+
+<script>
+(function () {
+  var qs = location.search;
+  var gate = document.getElementById('gate');
+  var KEY = 'kultu_age_ok';
+
+  /* modo QA/screenshot: ?nogate */
+  if (qs.indexOf('nogate') > -1) {
+    revealAll();
+  } else {
+    var ok = false;
+    try {
+      var s = JSON.parse(localStorage.getItem(KEY) || 'null');
+      ok = !!(s && s.exp > Date.now());
+    } catch (e) {}
+    if (ok) { revealAll(); } else { openGate(); }
+  }
+
+  function openGate() {
+    gate.hidden = false;
+    document.body.classList.add('locked');
+    var yes = document.getElementById('gate-yes');
+    yes.focus();
+    /* foco preso dentro do gate enquanto está aberto */
+    gate.addEventListener('keydown', function (e) {
+      if (e.key !== 'Tab') return;
+      var f = gate.querySelectorAll('button');
+      var first = f[0], last = f[f.length - 1];
+      if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last.focus(); }
+      else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
+    });
+    yes.addEventListener('click', function () {
+      try { localStorage.setItem(KEY, JSON.stringify({ exp: Date.now() + 30 * 864e5 })); } catch (e) {}
+      gate.hidden = true;
+      document.body.classList.remove('locked');
+      revealAll();
+    });
+    document.getElementById('gate-no').addEventListener('click', function () {
+      /* indicação do cliente: a recusa sai do site, nunca uma página de erro interna */
+      window.location.href = 'https://www.google.com';
+    });
+  }
+
+  function revealAll() {
+    var els = document.querySelectorAll('.rev');
+    if (!('IntersectionObserver' in window)) {
+      els.forEach(function (el) { el.classList.add('in'); });
+      return;
+    }
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (en) {
+        if (en.isIntersecting) { en.target.classList.add('in'); io.unobserve(en.target); }
+      });
+    }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+    els.forEach(function (el) { io.observe(el); });
+  }
+})();
+</script>
+</body>
+</html>
